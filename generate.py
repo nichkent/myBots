@@ -23,7 +23,7 @@ def Create_Robot():
     height = 1
 
     x = 0
-    y = 0.5
+    y = 0
     z = 0.5
 
     pyrosim.Send_Cube(name="Torso", pos=[x + 1, z, y + 2], size=[length, width, height])
