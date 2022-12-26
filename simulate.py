@@ -4,6 +4,7 @@ import pybullet_data
 import pyrosim.pyrosim as pyrosim
 import numpy
 import math
+import random
 
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -31,7 +32,7 @@ for i in range(500):
         bodyIndex=robotId,
         jointName=b'Torso_BackLeg',
         controlMode=p.POSITION_CONTROL,
-        targetPosition=(-math.pi/4),
+        targetPosition=((math.pi * random.random()) - math.pi/2),
         maxForce=500)
 
     # Supplies force to the front joint
@@ -39,7 +40,7 @@ for i in range(500):
         bodyIndex=robotId,
         jointName=b'Torso_FrontLeg',
         controlMode=p.POSITION_CONTROL,
-        targetPosition=(math.pi / 4),
+        targetPosition=((math.pi * random.random()) - math.pi/2),
         maxForce=500)
 
     # Makes the programs in simulation time run at 1/60 of a sec
