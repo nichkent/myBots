@@ -3,6 +3,7 @@ import time as t
 import pybullet_data
 import pyrosim.pyrosim as pyrosim
 import numpy
+import math
 
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -18,11 +19,30 @@ backLegSensorsValues = numpy.zeros(500)
 frontLegSensorsValues = numpy.zeros(500)
 
 for i in range(500):
+    # Makes the simulation step one time (tic)
     p.stepSimulation()
 
+    # Stores sensor values
     backLegSensorsValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
     frontLegSensorsValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
 
+    # Supplies force to the backleg joint
+    pyrosim.Set_Motor_For_Joint(
+        bodyIndex=robotId,
+        jointName=b'Torso_BackLeg',
+        controlMode=p.POSITION_CONTROL,
+        targetPosition=(-math.pi/4),
+        maxForce=500)
+
+    # Supplies force to the front joint
+    pyrosim.Set_Motor_For_Joint(
+        bodyIndex=robotId,
+        jointName=b'Torso_FrontLeg',
+        controlMode=p.POSITION_CONTROL,
+        targetPosition=(math.pi / 4),
+        maxForce=500)
+
+    # Makes the programs in simulation time run at 1/60 of a sec
     t.sleep(1/60)
 
 numpy.save("data/backLegTouchVector.npy", backLegSensorsValues)
