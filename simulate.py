@@ -7,7 +7,7 @@ physicsClient = p.connect(p.GUI)
 # Step the simulation 1000 times
 for i in range(1000):
     p.stepSimulation()
-    time.sleep(1)
+    time.sleep(1/60)
     print("Iteration:", i)
 
 # Stop sim
