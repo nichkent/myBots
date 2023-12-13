@@ -14,8 +14,11 @@ p.setGravity(0, 0, -9.8)
 # Set the floor
 planeId = p.loadURDF("plane.urdf")
 
+# Set the Body
+robotId = p.loadURDF("body.urdf")
+
 # Load box object
-p.loadSDF("boxes.sdf")
+p.loadSDF("world.sdf")
 
 # Step the simulation 1000 times
 for i in range(1000):
