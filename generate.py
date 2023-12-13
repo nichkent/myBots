@@ -1,17 +1,17 @@
 import pyrosim.pyrosim as pyrosim
 
 
-# Define cube 1 dims
-length = 1
-width = 1
-height = 1
-
-# Define cube 1 pos
-x = 0
-y = 0.5
-z = 0
-
 def Create_World():
+    # Define cube dims
+    length = 1
+    width = 1
+    height = 1
+
+    # Define cube pos
+    x = -2
+    y = 0.5
+    z = 2
+
     # Start generation
     pyrosim.Start_SDF("world.sdf")
 
@@ -21,7 +21,18 @@ def Create_World():
     # End cube generation
     pyrosim.End()
 
+
 def Create_Robot():
+    # Define body dims
+    length = 1
+    width = 1
+    height = 1
+
+    # Define body pos
+    x = 0
+    y = 0.5
+    z = 0
+
     # Create the body of the robot
     pyrosim.Start_URDF("body.urdf")
 
@@ -30,6 +41,7 @@ def Create_Robot():
 
     # End robot generation
     pyrosim.End()
+
 
 Create_World()
 Create_Robot()
