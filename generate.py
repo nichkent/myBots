@@ -37,19 +37,12 @@ def Create_Robot():
     pyrosim.Start_URDF("body.urdf")
 
     # Create body
-    pyrosim.Send_Cube(name="Link0", pos=[x, z, y], size=[length, width, height])
-    pyrosim.Send_Joint(name="Link0_Link1", parent="Link0", child="Link1", type="revolute", position=[x, z, y + .5])
-    pyrosim.Send_Cube(name="Link1", pos=[x, z, y], size=[length, width, height])
-    pyrosim.Send_Joint(name="Link1_Link2", parent="Link1", child="Link2", type="revolute", position=[x, z, y + .5])
-    pyrosim.Send_Cube(name="Link2", pos=[x, z, y], size=[length, width, height])
-    pyrosim.Send_Joint(name="Link2_Link3", parent="Link2", child="Link3", type="revolute", position=[x, z + 1, y - .5])
-    pyrosim.Send_Cube(name="Link3", pos=[x, z, y], size=[length, width, height])
-    pyrosim.Send_Joint(name="Link3_Link4", parent="Link3", child="Link4", type="revolute", position=[x, z + 1, y - .5])
-    pyrosim.Send_Cube(name="Link4", pos=[x, z, y], size=[length, width, height])
-    pyrosim.Send_Joint(name="Link4_Link5", parent="Link4", child="Link5", type="revolute", position=[x, z, y - 1.5])
-    pyrosim.Send_Cube(name="Link5", pos=[x, z, y], size=[length, width, height])
-    pyrosim.Send_Joint(name="Link5_Link6", parent="Link5", child="Link6", type="revolute", position=[x, z, y - 1.5])
-    pyrosim.Send_Cube(name="Link6", pos=[x, z, y], size=[length, width, height])
+    pyrosim.Send_Cube(name="FrontLeg", pos=[x - .5, z, y - 1], size=[length, width, height])
+    pyrosim.Send_Joint(name="Torso_FrontLeg", parent="Torso", child="FrontLeg", type="revolute", position=[x - .5, z, y + 1.5])
+    pyrosim.Send_Cube(name="Torso", pos=[x, z, y + 2], size=[length, width, height])
+    pyrosim.Send_Joint(name="Torso_BackLeg", parent="Torso", child="BackLeg", type="revolute", position=[x + .5, z, y + 1.5])
+    pyrosim.Send_Cube(name="BackLeg", pos=[x + .5, z, y - 1], size=[length, width, height])
+
 
     # End robot generation
     pyrosim.End()
