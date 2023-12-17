@@ -3,7 +3,7 @@ import pybullet as p
 import pybullet_data
 import numpy as np
 import math
-
+import random
 
 import pyrosim.pyrosim as pyrosim
 
@@ -47,14 +47,14 @@ for i in range(1000):
         bodyIndex=robotId,
         jointName="Torso_BackLeg",
         controlMode=p.POSITION_CONTROL,
-        targetPosition=-math.pi / 4.0,
+        targetPosition=random.random(),
         maxForce=500)
 
     pyrosim.Set_Motor_For_Joint(
         bodyIndex=robotId,
         jointName="Torso_FrontLeg",
         controlMode=p.POSITION_CONTROL,
-        targetPosition=math.pi / 4.0,
+        targetPosition=random.random(),
         maxForce=500)
 
     time.sleep(1/60)
