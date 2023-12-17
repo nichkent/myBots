@@ -33,6 +33,13 @@ backLegSensorValues = np.zeros(1000)
 # Create a np vector filled with zeros
 frontLegSensorValues = np.zeros(1000)
 
+# Create the vector for movement
+targetAngles = np.sin(np.linspace(0, 2 * np.pi, 1000))
+np.save("data/targetAngles.npy", targetAngles)
+
+
+exit()
+
 # Step the simulation 100 times
 for i in range(1000):
     p.stepSimulation()
@@ -41,6 +48,7 @@ for i in range(1000):
     backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
     # Get the sensor value for frontleg
     frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
+
 
     # Create motors for the robot's joints
     pyrosim.Set_Motor_For_Joint(
@@ -61,9 +69,9 @@ for i in range(1000):
     #print("Iteration:", i)
 
 # Save to a file in data
-np.save("data/backLegSensorValues.npy", backLegSensorValues)
+#np.save("data/backLegSensorValues.npy", backLegSensorValues)
 # Save to a file in data
-np.save("data/frontLegSensorValues.npy", frontLegSensorValues)
+#np.save("data/frontLegSensorValues.npy", frontLegSensorValues)
 
 # Stop sim
 p.disconnect()
