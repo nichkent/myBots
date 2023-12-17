@@ -26,18 +26,26 @@ p.loadSDF("world.sdf")
 pyrosim.Prepare_To_Simulate(robotId)
 
 # Create a np vector filled with zeros
-backLegSensorValues = np.zeros(100)
+backLegSensorValues = np.zeros(1000)
 # Create a np vector filled with zeros
-frontLegSensorValues = np.zeros(100)
+frontLegSensorValues = np.zeros(1000)
 
 # Step the simulation 100 times
-for i in range(100):
+for i in range(1000):
     p.stepSimulation()
 
     # Get the sensor value for backleg
     backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
-    # Get the sensor value for backleg
+    # Get the sensor value for frontleg
     frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
+
+    # Create motors for the robot's joints
+    pyrosim.Set_Motor_For_Joint(
+        bodyIndex=robotId,
+        jointName="Torso_BackLeg",
+        controlMode=p.POSITION_CONTROL,
+        targetPosition=0.0,
+        maxForce=500)
 
     time.sleep(1/60)
     #print("Iteration:", i)
