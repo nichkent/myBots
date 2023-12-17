@@ -1,7 +1,7 @@
 import time
 import pybullet as p
 import pybullet_data
-
+import numpy as np
 import pyrosim.pyrosim as pyrosim
 
 # Start the sim
@@ -25,16 +25,27 @@ p.loadSDF("world.sdf")
 # Prepare pyrosim for the robot
 pyrosim.Prepare_To_Simulate(robotId)
 
-# Step the simulation 1000 times
-for i in range(1000):
+# Create a np vector filled with zeros
+backLegSensorValues = np.zeros(100)
+# Create a np vector filled with zeros
+frontLegSensorValues = np.zeros(100)
+
+# Step the simulation 100 times
+for i in range(100):
     p.stepSimulation()
 
     # Get the sensor value for backleg
-    backLegTouch = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
-    print(backLegTouch)
+    backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
+    # Get the sensor value for backleg
+    frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
 
     time.sleep(1/60)
     #print("Iteration:", i)
+
+# Save to a file in data
+np.save("data/backLegSensorValues.npy", backLegSensorValues)
+# Save to a file in data
+np.save("data/frontLegSensorValues.npy", frontLegSensorValues)
 
 # Stop sim
 p.disconnect()
