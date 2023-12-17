@@ -47,15 +47,15 @@ for i in range(1000):
         bodyIndex=robotId,
         jointName="Torso_BackLeg",
         controlMode=p.POSITION_CONTROL,
-        targetPosition=random.random(),
-        maxForce=500)
+        targetPosition=random.uniform(-math.pi / 2.0, math.pi / 2.0),
+        maxForce=50)
 
     pyrosim.Set_Motor_For_Joint(
         bodyIndex=robotId,
         jointName="Torso_FrontLeg",
         controlMode=p.POSITION_CONTROL,
-        targetPosition=random.random(),
-        maxForce=500)
+        targetPosition=random.uniform(-math.pi / 2.0, math.pi / 2.0),
+        maxForce=50)
 
     time.sleep(1/60)
     #print("Iteration:", i)
