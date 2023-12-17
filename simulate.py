@@ -2,10 +2,12 @@ import time
 import pybullet as p
 import pybullet_data
 import numpy as np
-import math
-import random
 
 import pyrosim.pyrosim as pyrosim
+
+amplitude = np.pi/4
+frequency = 10
+phaseOffset = 0
 
 # Start the sim
 physicsClient = p.connect(p.GUI)
@@ -35,9 +37,8 @@ frontLegSensorValues = np.zeros(1000)
 
 
 # Create the vector for movement
-targetAngles = 0.8 * -np.sin(np.linspace(-np.pi/4, np.pi/4, 1000) * 4)
+targetAngles = amplitude * np.sin(2 * np.pi * frequency * np.linspace(0, 1, 1000) + phaseOffset)
 np.save("data/targetAngles.npy", targetAngles)
-
 
 exit()
 
@@ -56,14 +57,14 @@ for i in range(1000):
         bodyIndex=robotId,
         jointName="Torso_BackLeg",
         controlMode=p.POSITION_CONTROL,
-        targetPosition=random.uniform(-math.pi / 2.0, math.pi / 2.0),
+        targetPosition=targetAngles[i],
         maxForce=50)
 
     pyrosim.Set_Motor_For_Joint(
         bodyIndex=robotId,
         jointName="Torso_FrontLeg",
         controlMode=p.POSITION_CONTROL,
-        targetPosition=random.uniform(-math.pi / 2.0, math.pi / 2.0),
+        targetPosition=targetAngles[i],
         maxForce=50)
 
     time.sleep(1/60)
