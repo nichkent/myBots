@@ -5,9 +5,13 @@ import numpy as np
 
 import pyrosim.pyrosim as pyrosim
 
-amplitude = np.pi/4
-frequency = 10
-phaseOffset = 0
+amplitude_back_leg = np.pi/4
+frequency_back_leg = 10
+phaseOffset_back_leg = 0
+
+amplitude_front_leg = np.pi/4
+frequency_front_leg = 10
+phaseOffset_front_leg = np.pi/4
 
 # Start the sim
 physicsClient = p.connect(p.GUI)
@@ -36,11 +40,13 @@ backLegSensorValues = np.zeros(1000)
 frontLegSensorValues = np.zeros(1000)
 
 
-# Create the vector for movement
-targetAngles = amplitude * np.sin(2 * np.pi * frequency * np.linspace(0, 1, 1000) + phaseOffset)
-np.save("data/targetAngles.npy", targetAngles)
+# Create the vectors for movement
+targetAngles_back_leg = amplitude_back_leg * np.sin(2 * np.pi * frequency_back_leg * np.linspace(0, 1, 1000) + phaseOffset_back_leg)
+targetAngles_front_leg = amplitude_front_leg * np.sin(2 * np.pi * frequency_front_leg * np.linspace(0, 1, 1000) + phaseOffset_front_leg)
 
-exit()
+#np.save("data/targetAngles_back_leg.npy", targetAngles_back_leg)
+#np.save("data/targetAngles_front_leg.npy", targetAngles_front_leg)
+
 
 # Step the simulation 100 times
 for i in range(1000):
@@ -57,14 +63,15 @@ for i in range(1000):
         bodyIndex=robotId,
         jointName="Torso_BackLeg",
         controlMode=p.POSITION_CONTROL,
-        targetPosition=targetAngles[i],
+        targetPosition=targetAngles_back_leg[i],
         maxForce=50)
 
     pyrosim.Set_Motor_For_Joint(
         bodyIndex=robotId,
         jointName="Torso_FrontLeg",
         controlMode=p.POSITION_CONTROL,
-        targetPosition=targetAngles[i],
+        targetPosition=targetAngles_front_leg
+        [i],
         maxForce=50)
 
     time.sleep(1/60)
