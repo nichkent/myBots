@@ -5,12 +5,12 @@ import numpy as np
 
 import pyrosim.pyrosim as pyrosim
 
-amplitude_back_leg = np.pi/4
-frequency_back_leg = 10
+amplitude_back_leg = np.pi/6
+frequency_back_leg = 20
 phaseOffset_back_leg = 0
 
-amplitude_front_leg = np.pi/4
-frequency_front_leg = 10
+amplitude_front_leg = np.pi/6
+frequency_front_leg = 20
 phaseOffset_front_leg = np.pi/4
 
 # Start the sim
