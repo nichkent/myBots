@@ -33,8 +33,9 @@ backLegSensorValues = np.zeros(1000)
 # Create a np vector filled with zeros
 frontLegSensorValues = np.zeros(1000)
 
+
 # Create the vector for movement
-targetAngles = np.sin(np.linspace(0, 2 * np.pi, 1000))
+targetAngles = 0.8 * -np.sin(np.linspace(-np.pi/4, np.pi/4, 1000) * 4)
 np.save("data/targetAngles.npy", targetAngles)
 
 
