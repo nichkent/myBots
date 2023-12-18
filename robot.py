@@ -1,14 +1,11 @@
 from sensor import SENSOR
 from motor import MOTOR
-import constants as c
 import pybullet as p
 import pyrosim.pyrosim as pyrosim
 
 
 class ROBOT:
     def __init__(self):
-        self.motors = MOTOR()
-
         # Set the Body
         self.robotId = p.loadURDF("body.urdf")
 
@@ -18,14 +15,31 @@ class ROBOT:
         # Define sensors dictionary as empty
         self.sensors = {}
 
-        # Call Prepare To Sense function in Robot
+        # Define motors dictionary as empty
+        self.motors = {}
+
+        # Call Prepare_To_Sense function in Robot
         self.Prepare_To_Sense()
 
+        # Call Prepare_To_Act function in Robot
+        self.Prepare_To_Act()
+
     def Prepare_To_Sense(self):
-        # Define the robot's sensors based on how many are in body.urdf
+        # Define the robot's sensors based on how many links are in body.urdf
         for linkName in pyrosim.linkNamesToIndices:
             self.sensors[linkName] = SENSOR(linkName)
 
     def Sense(self, t):
+        # For each sensor get the value of that sensor
         for sensor in self.sensors.values():
             sensor.Get_Value(t)
+
+    def Prepare_To_Act(self):
+        # Define the robot's motors based on how many joints are in body.urdf
+        for jointName in pyrosim.jointNamesToIndices:
+            self.motors[jointName] = MOTOR(jointName, self.robotId)
+
+    def Act(self, t):
+        # For each motor set the value of that motor
+        for motor in self.motors.values():
+            motor.Set_Value(t, self.robotId)

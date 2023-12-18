@@ -6,5 +6,5 @@ class WORLD:
         # Set the floor
         self.planeId = p.loadURDF("plane.urdf")
 
-        # Load box object
+        # Load world object
         p.loadSDF("world.sdf")

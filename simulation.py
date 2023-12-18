@@ -25,26 +25,18 @@ class SIMULATION:
         p.disconnect()
 
     def Run(self):
+        # Define t to keep track of time
         for t in range(1000):
+            # Step the simulation
             p.stepSimulation()
+
+            # Call the robot to sense on every step of the sim
             self.robot.Sense(t)
-            #
-            # # Create motors for the robot's joints
-            # pyrosim.Set_Motor_For_Joint(
-            #     bodyIndex=self.robotId,
-            #     jointName="Torso_BackLeg",
-            #     controlMode=p.POSITION_CONTROL,
-            #     targetPosition=c.targetAngles_back_leg[i],
-            #     maxForce=50)
-            #
-            # pyrosim.Set_Motor_For_Joint(
-            #     bodyIndex=self.robotId,
-            #     jointName="Torso_FrontLeg",
-            #     controlMode=p.POSITION_CONTROL,
-            #     targetPosition=c.targetAngles_front_leg
-            #     [i],
-            #     maxForce=50)
-            #
+
+            # Call the robot to move on every step of the sim
+            self.robot.Act(t)
+
+            # Sleep
             time.sleep(1/60)
             # print("Iteration:", i)
 
