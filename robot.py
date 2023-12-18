@@ -1,5 +1,6 @@
 from sensor import SENSOR
 from motor import MOTOR
+import constants as c
 import pybullet as p
 import pyrosim.pyrosim as pyrosim
 
@@ -14,11 +15,17 @@ class ROBOT:
         # Prepare pyrosim for the robot
         pyrosim.Prepare_To_Simulate(self.robotId)
 
+        # Define sensors dictionary as empty
+        self.sensors = {}
+
         # Call Prepare To Sense function in Robot
         self.Prepare_To_Sense()
 
     def Prepare_To_Sense(self):
-        sensors = SENSOR()
+        # Define the robot's sensors based on how many are in body.urdf
         for linkName in pyrosim.linkNamesToIndices:
-            print(linkName)
+            self.sensors[linkName] = SENSOR(linkName)
 
+    def Sense(self, t):
+        for sensor in self.sensors.values():
+            sensor.Get_Value(t)

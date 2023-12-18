@@ -1,10 +1,9 @@
 from world import WORLD
 from robot import ROBOT
-import constants as c
-import pyrosim.pyrosim as pyrosim
 import pybullet as p
 import pybullet_data
 import time
+
 
 class SIMULATION:
     def __init__(self):
@@ -26,14 +25,9 @@ class SIMULATION:
         p.disconnect()
 
     def Run(self):
-        for i in range(1000):
+        for t in range(1000):
             p.stepSimulation()
-            #
-            # # Get the sensor value for backleg
-            # c.backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
-            # # Get the sensor value for frontleg
-            # c.frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
-            #
+            self.robot.Sense(t)
             #
             # # Create motors for the robot's joints
             # pyrosim.Set_Motor_For_Joint(
@@ -52,6 +46,6 @@ class SIMULATION:
             #     maxForce=50)
             #
             time.sleep(1/60)
-            #print("Iteration:", i)
+            # print("Iteration:", i)
 
 
