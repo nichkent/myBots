@@ -22,7 +22,7 @@ def Create_World():
     pyrosim.End()
 
 
-def Create_Robot():
+def Generate_Body():
     # Define body dims
     length = 1
     width = 1
@@ -43,10 +43,30 @@ def Create_Robot():
     pyrosim.Send_Joint(name="Torso_BackLeg", parent="Torso", child="BackLeg", type="revolute", position=[x - .5, z, y + 1.5])
     pyrosim.Send_Cube(name="BackLeg", pos=[x - .5, z, y - 1], size=[length, width, height])
 
+    # End robot generation
+    pyrosim.End()
+
+def Generate_Brain():
+    # Define body dims
+    length = 1
+    width = 1
+    height = 1
+
+    # Define body pos
+    x = 0
+    y = 0.5
+    z = 0
+
+    # Create the body of the robot
+    pyrosim.Start_NeuralNetwork("brain.nndf")
+
+    # Create a sensor neuron to receive information from sensors
+    pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
 
     # End robot generation
     pyrosim.End()
 
 
 Create_World()
-Create_Robot()
+Generate_Body()
+Generate_Brain()
