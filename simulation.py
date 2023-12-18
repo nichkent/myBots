@@ -21,6 +21,9 @@ class SIMULATION:
         self.world = WORLD()
         self.robot = ROBOT()
 
+    def __del__(self):
+        # Stop sim
+        p.disconnect()
 
     def Run(self):
         for i in range(1000):
@@ -49,6 +52,6 @@ class SIMULATION:
             #     maxForce=50)
             #
             time.sleep(1/60)
-            print("Iteration:", i)
+            #print("Iteration:", i)
 
 
