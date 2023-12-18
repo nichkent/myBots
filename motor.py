@@ -1,3 +1,5 @@
+import numpy
+
 import constants as c
 import pybullet as p
 import pyrosim.pyrosim as pyrosim
@@ -27,7 +29,10 @@ class MOTOR:
         # Create motor for the robot's joints
         pyrosim.Set_Motor_For_Joint(
             bodyIndex=robotId,
-            jointName=self.jointName, # Using the name of each joint
+            jointName=self.jointName,  # Using the name of each joint
             controlMode=p.POSITION_CONTROL,
-            targetPosition=self.motorValues[t], # Using the motor's values to set the position
+            targetPosition=self.motorValues[t],  # Using the motor's values to set the position
             maxForce=50)
+
+    def Save_Values(self):
+        numpy.save("data/motorValues.npy", self.motorValues)
