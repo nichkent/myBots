@@ -147,7 +147,7 @@ class NEURON:
                 self.Allow_Presynaptic_Neuron_To_Influence_Me(synapse_weight, pre_synaptic_neuron_value)
         print(self.Get_Value())
         exit()
-        
+
     def Allow_Presynaptic_Neuron_To_Influence_Me(self, weight, value):
         # Define the amount of influence
         influence = value * weight

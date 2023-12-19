@@ -37,11 +37,11 @@ def Generate_Body():
     pyrosim.Start_URDF("body.urdf")
 
     # Create body
-    pyrosim.Send_Cube(name="FrontLeg", pos=[x + .5, z, y - 1], size=[length, width, height])
-    pyrosim.Send_Joint(name="Torso_FrontLeg", parent="Torso", child="FrontLeg", type="revolute", position=[x + .5, z, y + 1.5])
-    pyrosim.Send_Cube(name="Torso", pos=[x, z, y + 2], size=[length, width, height])
-    pyrosim.Send_Joint(name="Torso_BackLeg", parent="Torso", child="BackLeg", type="revolute", position=[x - .5, z, y + 1.5])
-    pyrosim.Send_Cube(name="BackLeg", pos=[x - .5, z, y - 1], size=[length, width, height])
+    pyrosim.Send_Cube(name="FrontLeg", pos=[x + .5, z, y-1], size=[length, width, height])
+    pyrosim.Send_Joint(name="Torso_FrontLeg", parent="Torso", child="FrontLeg", type="revolute", position=[x + .5, z, y + .5])
+    pyrosim.Send_Cube(name="Torso", pos=[x, z, y + 1], size=[length, width, height])
+    pyrosim.Send_Joint(name="Torso_BackLeg", parent="Torso", child="BackLeg", type="revolute", position=[x - .5, z, y + .5])
+    pyrosim.Send_Cube(name="BackLeg", pos=[x - .5, z, y-1], size=[length, width, height])
 
     # End robot generation
     pyrosim.End()
@@ -71,6 +71,8 @@ def Generate_Brain():
 
     # Generate synapses
     pyrosim.Send_Synapse(sourceNeuronName=0, targetNeuronName=3, weight=1.0)
+    pyrosim.Send_Synapse(sourceNeuronName=1, targetNeuronName=3, weight=1.0)
+
 
     # End robot generation
     pyrosim.End()
