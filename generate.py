@@ -60,10 +60,14 @@ def Generate_Brain():
     # Create the body of the robot
     pyrosim.Start_NeuralNetwork("brain.nndf")
 
-    # Create a sensor neurons to receive information from sensors
+    # Create sensor neurons to receive information from sensors
     pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
     pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
     pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
+
+    # Create motor neurons
+    pyrosim.Send_Motor_Neuron(name=3, jointName="Torso_BackLeg")
+    pyrosim.Send_Motor_Neuron(name=4, jointName="Torso_FrontLeg")
 
     # End robot generation
     pyrosim.End()
