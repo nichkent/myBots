@@ -35,13 +35,13 @@ class MOTOR:
         # Create the vectors for movement based on a sin wave
         self.targetAngles = self.amplitude * numpy.sin(2 * numpy.pi * self.frequency * numpy.linspace(0, 1, 1000) + self.offset)
 
-    def Set_Value(self, t, robotId):
+    def Set_Value(self, desiredAngle, robotId):
         # Create motor for the robot's joints
         pyrosim.Set_Motor_For_Joint(
             bodyIndex=robotId,
             jointName=self.jointName,  # Using the name of each joint
             controlMode=p.POSITION_CONTROL,
-            targetPosition=self.motorValues[t],  # Using the motor's values to set the position
+            targetPosition=desiredAngle,  # Using the motor's values to set the position
             maxForce=50)
 
     def Save_Values(self):
