@@ -63,11 +63,14 @@ def Generate_Brain():
     # Create sensor neurons to receive information from sensors
     pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
     pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
-    pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
 
-    # Create motor neurons
+    # Create motor neurons to move the link's joints
     pyrosim.Send_Motor_Neuron(name=3, jointName="Torso_BackLeg")
     pyrosim.Send_Motor_Neuron(name=4, jointName="Torso_FrontLeg")
+    pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
+
+    # Generate synapses
+    pyrosim.Send_Synapse(sourceNeuronName=0, targetNeuronName=3, weight=1.0)
 
     # End robot generation
     pyrosim.End()
