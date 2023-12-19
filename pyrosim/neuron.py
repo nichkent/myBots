@@ -129,7 +129,6 @@ class NEURON:
         # Set value of the neuron to 0
         self.Set_Value(0)
 
-        print(self.Get_Value())
         # Loop through the synapses dictionary, storing the keys
         for synapse_key in synapses:
             # Assign the current neurons pre and post synaptic neurons
@@ -145,8 +144,10 @@ class NEURON:
 
                 # Call Allow_Presynaptic_Neuron_To_Influence_Me in neuron.py
                 self.Allow_Presynaptic_Neuron_To_Influence_Me(synapse_weight, pre_synaptic_neuron_value)
-        print(self.Get_Value())
-        exit()
+
+        # Call threshold function to allow positive or negative weights
+        self.Threshold()
+
 
     def Allow_Presynaptic_Neuron_To_Influence_Me(self, weight, value):
         # Define the amount of influence
