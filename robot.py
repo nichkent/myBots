@@ -53,10 +53,6 @@ class ROBOT:
                 for motor in self.motors.values():
                     motor.Set_Value(desiredAngle, self.robotId)
 
-
-
-
-
     def Think(self):
         self.nn.Update()
         self.nn.Print()
