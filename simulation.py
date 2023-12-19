@@ -33,6 +33,9 @@ class SIMULATION:
             # Call the robot to sense on every step of the sim
             self.robot.Sense(t)
 
+            # Call the robot to think between sensing and acting
+            self.robot.Think()
+
             # Call the robot to move on every step of the sim
             self.robot.Act(t)
 

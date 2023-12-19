@@ -2,6 +2,7 @@ from sensor import SENSOR
 from motor import MOTOR
 import pybullet as p
 import pyrosim.pyrosim as pyrosim
+from pyrosim.neuralNetwork import NEURAL_NETWORK
 
 
 class ROBOT:
@@ -14,6 +15,9 @@ class ROBOT:
 
         # Define sensors dictionary as empty
         self.sensors = {}
+
+        # Defien neural network
+        self.nn = NEURAL_NETWORK("brain.nndf")
 
         # Define motors dictionary as empty
         self.motors = {}
@@ -43,3 +47,7 @@ class ROBOT:
         # For each motor set the value of that motor
         for motor in self.motors.values():
             motor.Set_Value(t, self.robotId)
+
+    def Think(self):
+        self.nn.Update()
+        self.nn.Print()
