@@ -3,6 +3,7 @@ from robot import ROBOT
 import pybullet as p
 import pybullet_data
 import time
+import constants as c
 
 
 class SIMULATION:
@@ -26,7 +27,7 @@ class SIMULATION:
 
     def Run(self):
         # Define t to keep track of time
-        for t in range(100):
+        for t in range(c.numTimeSteps):
             # Step the simulation
             p.stepSimulation()
 
