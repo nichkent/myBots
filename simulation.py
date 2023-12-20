@@ -26,7 +26,7 @@ class SIMULATION:
 
     def Run(self):
         # Define t to keep track of time
-        for t in range(1000):
+        for t in range(100):
             # Step the simulation
             p.stepSimulation()
 

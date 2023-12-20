@@ -148,7 +148,6 @@ class NEURON:
         # Call threshold function to allow positive or negative weights
         self.Threshold()
 
-
     def Allow_Presynaptic_Neuron_To_Influence_Me(self, weight, value):
         # Define the amount of influence
         influence = value * weight
