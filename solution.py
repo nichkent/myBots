@@ -104,3 +104,12 @@ class SOLUTION:
 
         # End robot generation
         pyrosim.End()
+
+    def Mutate(self):
+        row = random.randint(0, 2)
+
+        column = random.randint(0, 1)
+
+        mutation_amount = random.random() * 2 - 1
+
+        self.weights[row][column] += mutation_amount
