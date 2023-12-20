@@ -6,6 +6,8 @@ simulation = SIMULATION()
 # Run simulation
 simulation.Run()
 
+simulation.Get_Fitness()
+
 
 
 

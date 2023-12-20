@@ -43,4 +43,5 @@ class SIMULATION:
             time.sleep(1/60)
             # print("Iteration:", i)
 
-
+    def Get_Fitness(self):
+        self.robot.Get_Fitness()

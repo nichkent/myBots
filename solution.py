@@ -1,3 +1,4 @@
+import ast
 import random
 import os
 import numpy
@@ -14,6 +15,9 @@ class SOLUTION:
         self.Generate_Body()
         self.Generate_Brain()
         os.system("python simulate.py")
+
+        with open("fitness.txt", "r") as fitnessFile:
+            self.fitness = float(fitnessFile.read())
 
     def Create_World(self):
         # Define cube dims
