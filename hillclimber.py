@@ -1,9 +1,10 @@
 from solution import SOLUTION
+import copy
+
 
 class HILL_CLIMBER:
     def __init__(self):
         self.parent = SOLUTION()
-        self.child = SOLUTION()
 
     def Evolve(self):
         # Define number of generations
@@ -25,7 +26,7 @@ class HILL_CLIMBER:
         self.Select()
 
     def Spawn(self):
-        pass
+        self.child = copy.deepcopy(self.parent)
 
     def Mutate(self):
         pass
