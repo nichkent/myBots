@@ -8,13 +8,12 @@ class HILL_CLIMBER:
         self.parent = SOLUTION()
 
     def Evolve(self):
-        # Calls solution's Evaluate method
-        self.parent.Evaluate("DIRECT")
+        # Calls solutions Evaluate method with graphics
+        self.parent.Evaluate("GUI")
 
         for currentGeneration in range(c.numberOfGenerations):
+            # Rest of the generations are w/o graphics
             self.Evolve_For_One_Generation()
-
-        self.parent.Evaluate("GUI")
 
     def Evolve_For_One_Generation(self):
         self.Spawn()
@@ -39,3 +38,7 @@ class HILL_CLIMBER:
 
     def Print(self):
         print("\n", self.parent.fitness, self.child.fitness)
+
+    def Show_Best(self):
+        # Call the final parent with graphics to see imporvement
+        self.parent.Evaluate("GUI")

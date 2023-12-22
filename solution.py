@@ -10,11 +10,15 @@ class SOLUTION:
         self.weights = self.weights * 2 - 1
 
     def Evaluate(self, directOrGUI):
+        # Call generate functions for sim
         self.Create_World()
         self.Generate_Body()
         self.Generate_Brain()
+
+        # Run the simulation with or without graphics
         os.system("python simulate.py " + directOrGUI)
 
+        # Read the fitness values of the parent
         with open("fitness.txt", "r") as fitnessFile:
             self.fitness = float(fitnessFile.read())
 
@@ -99,10 +103,12 @@ class SOLUTION:
         pyrosim.End()
 
     def Mutate(self):
+        # Find random row and column
         row = random.randint(0, 2)
-
         column = random.randint(0, 1)
 
+        # Calculate the amount the random element is changed by
         mutation_amount = random.random() * 2 - 1
 
+        # Mutate that random element in weights for the child
         self.weights[row][column] = mutation_amount
