@@ -10,7 +10,7 @@ class SIMULATION:
     def __init__(self):
 
         # Start the sim
-        physicsClient = p.connect(p.GUI)
+        physicsClient = p.connect(p.DIRECT)
 
         # Connect pybullect data
         p.setAdditionalSearchPath(pybullet_data.getDataPath())

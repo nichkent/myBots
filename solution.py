@@ -1,4 +1,3 @@
-import ast
 import random
 import os
 import numpy
@@ -92,12 +91,6 @@ class SOLUTION:
 
         motor_neurons = [0, 1]  # Names of motor neurons
 
-        # Generate synapses
-        # pyrosim.Send_Synapse(sourceNeuronName=0, targetNeuronName=3, weight=1.0)
-        # pyrosim.Send_Synapse(sourceNeuronName=1, targetNeuronName=3, weight=1.0)
-        # pyrosim.Send_Synapse(sourceNeuronName=0, targetNeuronName=4, weight=-1.0)
-        # pyrosim.Send_Synapse(sourceNeuronName=2, targetNeuronName=4, weight=-1.0)
-
         for currentRow in sensor_neurons:
             for currentColumn in motor_neurons:
                 pyrosim.Send_Synapse(sourceNeuronName=currentRow, targetNeuronName=currentColumn + 3, weight=self.weights[currentRow][currentColumn])
@@ -112,4 +105,4 @@ class SOLUTION:
 
         mutation_amount = random.random() * 2 - 1
 
-        self.weights[row][column] += mutation_amount
+        self.weights[row][column] = mutation_amount

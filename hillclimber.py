@@ -1,5 +1,6 @@
 from solution import SOLUTION
 import copy
+import constants as c
 
 
 class HILL_CLIMBER:
@@ -7,13 +8,10 @@ class HILL_CLIMBER:
         self.parent = SOLUTION()
 
     def Evolve(self):
-        # Define number of generations
-        numberOfGenerations = 2
-
         # Calls solution's Evaluate method
         self.parent.Evaluate()
 
-        for currentGeneration in range(numberOfGenerations):
+        for currentGeneration in range(c.numberOfGenerations):
             self.Evolve_For_One_Generation()
 
     def Evolve_For_One_Generation(self):
@@ -33,13 +31,9 @@ class HILL_CLIMBER:
     def Mutate(self):
         self.child.Mutate()
 
-    def Evaluate(self):
-        pass
-
     def Select(self):
-        if self.parent.fitness < self.child.fitness:
+        if self.parent.fitness > self.child.fitness:
             self.parent.fitness = self.child.fitness
 
     def Print(self):
-        print(self.parent.fitness)
-        print(self.child.fitness)
+        print("\n", self.parent.fitness, self.child.fitness)
