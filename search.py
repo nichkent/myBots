@@ -1,9 +1,9 @@
-from hillclimber import HILL_CLIMBER
+from parallelHillClimber import PARALLEL_HILL_CLIMBER
 
-hc = HILL_CLIMBER()
+phc = PARALLEL_HILL_CLIMBER()
 
 # Call the evolution process
-hc.Evolve()
+phc.Evolve()
 
 # Shows the best parent produced by the evolution
-hc.Show_Best()
+phc.Show_Best()

@@ -10,3 +10,6 @@ numTimeSteps = 100
 
 # Number of generations for a solution
 numberOfGenerations = 10
+
+# Population Size
+populationSize = 3
