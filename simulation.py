@@ -7,10 +7,13 @@ import constants as c
 
 
 class SIMULATION:
-    def __init__(self):
+    def __init__(self, directOrGUI):
 
         # Start the sim
-        physicsClient = p.connect(p.DIRECT)
+        if directOrGUI == "DIRECT":
+            physicsClient = p.connect(p.DIRECT)
+        else:
+            pysicsClient = p.connect(p.GUI)
 
         # Connect pybullect data
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
