@@ -15,10 +15,10 @@ class SOLUTION:
         # Call generate functions for sim
         self.Create_World()
         self.Generate_Body()
-        self.Generate_Brain()
+        self.Send_Brain(self.myID)
 
         # Run the simulation with or without graphics
-        os.system("start /B python simulate.py " + directOrGUI)
+        os.system("start /B python simulate.py " + directOrGUI + " " + str(self.myID))
 
         # Read the fitness values of the parent
         with open("fitness.txt", "r") as fitnessFile:
@@ -70,7 +70,7 @@ class SOLUTION:
         # End robot generation
         pyrosim.End()
 
-    def Generate_Brain(self):
+    def Send_Brain(self, ID):
         # Define body dims
         length = 1
         width = 1
@@ -82,7 +82,7 @@ class SOLUTION:
         z = 0
 
         # Create the body of the robot
-        pyrosim.Start_NeuralNetwork("brain.nndf")
+        pyrosim.Start_NeuralNetwork("brain" + str(ID) + ".nndf")
 
         # Create sensor neurons to receive information from sensors
         pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")

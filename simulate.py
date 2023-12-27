@@ -1,11 +1,14 @@
 from simulation import SIMULATION
 import sys
 
-# Create command line argument storage var
+# Create command line argument for simulation var
 directOrGUI = sys.argv[1]
 
+# Command line argument storage for the solution ID
+solutionID = sys.argv[2]
+
 # Create simulation
-simulation = SIMULATION(directOrGUI)
+simulation = SIMULATION(directOrGUI, solutionID)
 
 # Run simulation
 simulation.Run()

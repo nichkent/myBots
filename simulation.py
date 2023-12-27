@@ -7,7 +7,7 @@ import constants as c
 
 
 class SIMULATION:
-    def __init__(self, directOrGUI):
+    def __init__(self, directOrGUI, solutionID):
         self.directOrGUI = directOrGUI
         # Start the sim
         if self.directOrGUI == "DIRECT":
@@ -22,7 +22,7 @@ class SIMULATION:
         p.setGravity(0, 0, -9.8)
 
         self.world = WORLD()
-        self.robot = ROBOT()
+        self.robot = ROBOT(solutionID)
 
     def __del__(self):
         # Stop sim

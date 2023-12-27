@@ -3,10 +3,11 @@ from motor import MOTOR
 import pybullet as p
 import pyrosim.pyrosim as pyrosim
 from pyrosim.neuralNetwork import NEURAL_NETWORK
+import os
 
 
 class ROBOT:
-    def __init__(self):
+    def __init__(self, ID):
         # Set the Body
         self.robotId = p.loadURDF("body.urdf")
 
@@ -17,7 +18,7 @@ class ROBOT:
         self.sensors = {}
 
         # Defien neural network
-        self.nn = NEURAL_NETWORK("brain.nndf")
+        self.nn = NEURAL_NETWORK("brain" + str(ID) + ".nndf")
 
         # Define motors dictionary as empty
         self.motors = {}
@@ -27,6 +28,9 @@ class ROBOT:
 
         # Call Prepare_To_Act function in Robot
         self.Prepare_To_Act()
+
+        # Delete nndf file after it has been read
+        os.system("del brain" + str(ID) + ".nndf")
 
     def Prepare_To_Sense(self):
         # Define the robot's sensors based on how many links are in body.urdf
