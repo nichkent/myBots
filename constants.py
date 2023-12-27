@@ -12,4 +12,4 @@ numTimeSteps = 100
 numberOfGenerations = 10
 
 # Population Size
-populationSize = 3
+populationSize = 2
