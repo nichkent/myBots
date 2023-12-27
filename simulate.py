@@ -13,7 +13,8 @@ simulation = SIMULATION(directOrGUI, solutionID)
 # Run simulation
 simulation.Run()
 
-simulation.Get_Fitness()
+# Write the fitness of each generation to a file
+simulation.Get_Fitness(solutionID)
 
 
 

@@ -17,8 +17,11 @@ class ROBOT:
         # Define sensors dictionary as empty
         self.sensors = {}
 
-        # Defien neural network
+        # Define neural network
         self.nn = NEURAL_NETWORK("brain" + str(ID) + ".nndf")
+
+        # Delete nndf file after it has been read
+        os.system("del brain" + str(ID) + ".nndf")
 
         # Define motors dictionary as empty
         self.motors = {}
@@ -28,9 +31,6 @@ class ROBOT:
 
         # Call Prepare_To_Act function in Robot
         self.Prepare_To_Act()
-
-        # Delete nndf file after it has been read
-        os.system("del brain" + str(ID) + ".nndf")
 
     def Prepare_To_Sense(self):
         # Define the robot's sensors based on how many links are in body.urdf
@@ -61,10 +61,12 @@ class ROBOT:
         self.nn.Update()
         #self.nn.Print()
 
-    def Get_Fitness(self):
+    def Get_Fitness(self, solutionID):
         stateOfLinkZero = p.getLinkState(self.robotId, 0)
         positionOfLinkZero = stateOfLinkZero[0]
         xCoordinateOfLinkZero = positionOfLinkZero[0]
-        with open("fitness.txt", "w") as f:
+
+        with open("tmp" + str(solutionID) + ".txt", "w") as f:
             f.write(str(xCoordinateOfLinkZero))
+        os.system("rename tmp" + str(solutionID) + ".txt " "fitness" + str(solutionID) + ".txt")
 

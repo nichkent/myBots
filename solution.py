@@ -1,5 +1,7 @@
 import random
 import os
+import time
+
 import numpy
 import pyrosim.pyrosim as pyrosim
 
@@ -11,7 +13,7 @@ class SOLUTION:
 
         self.myID = nextAvailableID
 
-    def Evaluate(self, directOrGUI):
+    def Start_Simulation(self, directOrGUI):
         # Call generate functions for sim
         self.Create_World()
         self.Generate_Body()
@@ -20,9 +22,16 @@ class SOLUTION:
         # Run the simulation with or without graphics
         os.system("start /B python simulate.py " + directOrGUI + " " + str(self.myID))
 
+    def Wait_For_Simulation_To_End(self):
+        # Sleep the program if the fitness files have yet to be created
+        while not os.path.exists("fitness" + str(self.myID) + ".txt"):
+            time.sleep(0.01)
+
         # Read the fitness values of the parent
-        with open("fitness.txt", "r") as fitnessFile:
+        with open("fitness" + str(self.myID) + ".txt", "r") as fitnessFile:
             self.fitness = float(fitnessFile.read())
+
+        os.system("del fitness" + str(self.myID) + ".txt")
 
     def Create_World(self):
         # Define cube dims
