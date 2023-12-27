@@ -5,9 +5,11 @@ import pyrosim.pyrosim as pyrosim
 
 
 class SOLUTION:
-    def __init__(self):
+    def __init__(self, nextAvailableID):
         self.weights = numpy.random.rand(3, 2)
         self.weights = self.weights * 2 - 1
+
+        self.myID = nextAvailableID
 
     def Evaluate(self, directOrGUI):
         # Call generate functions for sim
@@ -112,3 +114,6 @@ class SOLUTION:
 
         # Mutate that random element in weights for the child
         self.weights[row][column] = mutation_amount
+
+    def Set_ID(self, newID):
+        self.myID = newID
