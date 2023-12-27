@@ -16,7 +16,7 @@ class SOLUTION:
         self.Generate_Brain()
 
         # Run the simulation with or without graphics
-        os.system("python simulate.py " + directOrGUI)
+        os.system("start /B python simulate.py " + directOrGUI)
 
         # Read the fitness values of the parent
         with open("fitness.txt", "r") as fitnessFile:
