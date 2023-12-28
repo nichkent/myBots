@@ -39,8 +39,8 @@ class PARALLEL_HILL_CLIMBER:
         self.Evaluate(self.children)
 
         self.Print()
-        #
-        # self.Select()
+
+        self.Select()
 
     def Spawn(self):
         # Create an empty dictionary
@@ -58,8 +58,9 @@ class PARALLEL_HILL_CLIMBER:
             self.children[child].Mutate()
 
     def Select(self):
-        if self.parent.fitness > self.child.fitness:
-            self.parent.fitness = self.child.fitness
+        for key in self.parents:
+            if self.parents[key].fitness > self.children[key].fitness:
+                self.parents[key].fitness = self.children[key].fitness
 
     def Print(self):
         print()
