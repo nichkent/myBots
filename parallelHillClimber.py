@@ -9,9 +9,9 @@ class PARALLEL_HILL_CLIMBER:
     def __init__(self):
         # Delete all brain and fitness files at the start of each hill_climber instance
         for brain_file in  glob.glob("brain*.nndf"):
-            os.system(brain_file)
+            os.remove(brain_file)
         for fitness_file in glob.glob("fitness*.txt"):
-            os.system(fitness_file)
+            os.remove(fitness_file)
 
         # Create a dictionary of parents
         self.parents = {}
@@ -37,9 +37,8 @@ class PARALLEL_HILL_CLIMBER:
         self.Mutate()
 
         self.Evaluate(self.children)
-        exit()
-        #
-        # self.Print()
+
+        self.Print()
         #
         # self.Select()
 
@@ -63,7 +62,12 @@ class PARALLEL_HILL_CLIMBER:
             self.parent.fitness = self.child.fitness
 
     def Print(self):
-        print("\n", self.parent.fitness, self.child.fitness)
+        print()
+        for key in self.parents:
+            parent_fitness = self.parents[key].fitness
+            child_fitness = self.children[key].fitness
+            print(f"Parent {key}: {parent_fitness} Child {key}: {child_fitness}")
+        print()
 
     def Show_Best(self):
         pass

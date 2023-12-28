@@ -30,7 +30,7 @@ class SOLUTION:
         # Read the fitness values of the parent
         with open("fitness" + str(self.myID) + ".txt", "r") as fitnessFile:
             self.fitness = float(fitnessFile.read())
-        print(self.fitness)
+        #print(self.fitness)
         os.system("del fitness" + str(self.myID) + ".txt")
 
     def Create_World(self):
