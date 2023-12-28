@@ -61,20 +61,20 @@ class SOLUTION:
 
         # Define body pos
         x = 0
-        y = 0.5
-        z = 0
+        y = 0
+        z = 1
 
         # Create the body of the robot
         pyrosim.Start_URDF("body.urdf")
 
         # Create body
-        pyrosim.Send_Cube(name="FrontLeg", pos=[x + .5, z, y - 1], size=[length, width, height])
+        pyrosim.Send_Cube(name="FrontLeg", pos=[x - .5, y + 1, z - 1.5], size=[length * 0.2, width, height * 0.2])
         pyrosim.Send_Joint(name="Torso_FrontLeg", parent="Torso", child="FrontLeg", type="revolute",
-                           position=[x + .5, z, y + .5])
-        pyrosim.Send_Cube(name="Torso", pos=[x, z, y + 1], size=[length, width, height])
+                           position=[x + .5, y, z + .5])
+        pyrosim.Send_Cube(name="Torso", pos=[x, y, z], size=[length, width, height])
         pyrosim.Send_Joint(name="Torso_BackLeg", parent="Torso", child="BackLeg", type="revolute",
-                           position=[x - .5, z, y + .5])
-        pyrosim.Send_Cube(name="BackLeg", pos=[x - .5, z, y - 1], size=[length, width, height])
+                           position=[x - .5, y, z + .5])
+        pyrosim.Send_Cube(name="BackLeg", pos=[x + 1, y, z - 2], size=[length, width, height])
 
         # End robot generation
         pyrosim.End()
