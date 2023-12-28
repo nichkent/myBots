@@ -6,10 +6,10 @@ frequency = 5
 phaseOffset = numpy.pi/4
 
 # Number of steps in the simulation
-numTimeSteps = 100
+numTimeSteps = 1000
 
 # Number of generations for a solution
 numberOfGenerations = 10
 
 # Population Size
-populationSize = 2
+populationSize = 10

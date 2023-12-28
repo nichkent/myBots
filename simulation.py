@@ -20,7 +20,6 @@ class SIMULATION:
 
         # Set the gravity
         p.setGravity(0, 0, -9.8)
-
         self.world = WORLD()
         self.robot = ROBOT(solutionID)
 

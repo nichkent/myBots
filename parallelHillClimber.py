@@ -71,9 +71,21 @@ class PARALLEL_HILL_CLIMBER:
         print()
 
     def Show_Best(self):
-        pass
-        # # Call the final parent with graphics to see imporvement
-        # self.parent.Evaluate("GUI")
+        # Assign infinity as initial worst score
+        best_fitness = float('inf')
+        # Assign base value for parent key
+        best_parent_key = None
+
+        # Iterate through all parents to find the one with the lowest fitness
+        for key, parent in self.parents.items():
+            if parent.fitness < best_fitness:
+                best_fitness = parent.fitness
+                best_parent_key = key
+
+        # Simulate the best parent with the graphics on
+        # Ensure the best parent was found
+        if best_parent_key is not None:
+            self.parents[best_parent_key].Start_Simulation("GUI")
 
     def Evaluate(self, solutions):
         for parent in solutions:
