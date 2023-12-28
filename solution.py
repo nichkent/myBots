@@ -1,9 +1,9 @@
 import random
 import os
 import time
-
 import numpy
 import pyrosim.pyrosim as pyrosim
+import constants as c
 
 
 class SOLUTION:
@@ -17,7 +17,7 @@ class SOLUTION:
         # Call generate functions for sim
         self.Create_World()
         self.Generate_Body()
-        self.Send_Brain(self.myID)
+        self.Generate_Brain(self.myID)
 
         # Run the simulation with or without graphics
         os.system("start /B python simulate.py " + directOrGUI + " " + str(self.myID))
@@ -79,7 +79,7 @@ class SOLUTION:
         # End robot generation
         pyrosim.End()
 
-    def Send_Brain(self, ID):
+    def Generate_Brain(self, ID):
         # Define body dims
         length = 1
         width = 1
@@ -98,25 +98,21 @@ class SOLUTION:
         pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
         pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
 
-        sensor_neurons = [0, 1, 2]  # Names of sensor neurons
-
         # Create motor neurons to move the link's joints
         pyrosim.Send_Motor_Neuron(name=3, jointName="Torso_BackLeg")
         pyrosim.Send_Motor_Neuron(name=4, jointName="Torso_FrontLeg")
 
-        motor_neurons = [0, 1]  # Names of motor neurons
-
-        for currentRow in sensor_neurons:
-            for currentColumn in motor_neurons:
-                pyrosim.Send_Synapse(sourceNeuronName=currentRow, targetNeuronName=currentColumn + 3, weight=self.weights[currentRow][currentColumn])
+        for currentRow in range(c.numSensorNeurons):
+            for currentColumn in range(c.numMotorNeurons):
+                pyrosim.Send_Synapse(sourceNeuronName=currentRow, targetNeuronName=currentColumn + c.numSensorNeurons, weight=self.weights[currentRow][currentColumn])
 
         # End robot generation
         pyrosim.End()
 
     def Mutate(self):
         # Find random row and column
-        row = random.randint(0, 2)
-        column = random.randint(0, 1)
+        row = random.randint(0, c.numSensorNeurons - 1)
+        column = random.randint(0, c.numMotorNeurons - 1)
 
         # Calculate the amount the random element is changed by
         mutation_amount = random.random() * 2 - 1
