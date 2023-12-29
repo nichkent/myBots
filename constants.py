@@ -15,7 +15,7 @@ numberOfGenerations = 1
 populationSize = 1
 
 # Number of sensor neurons
-numSensorNeurons = 3
+numSensorNeurons = 4
 
 # Number of motor neurons
-numMotorNeurons = 2
+numMotorNeurons = 3

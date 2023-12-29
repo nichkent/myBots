@@ -8,7 +8,7 @@ import constants as c
 
 class SOLUTION:
     def __init__(self, nextAvailableID):
-        self.weights = numpy.random.rand(3, 2)
+        self.weights = numpy.random.rand(c.numSensorNeurons, c.numMotorNeurons)
         self.weights = self.weights * 2 - 1
 
         self.myID = nextAvailableID
@@ -75,6 +75,9 @@ class SOLUTION:
         pyrosim.Send_Joint(name="Torso_BackLeg", parent="Torso", child="BackLeg", type="revolute",
                            position=[x, y-.5, z], jointAxis="1 0 0")
         pyrosim.Send_Cube(name="BackLeg", pos=[x, y - .5, z-1], size=[length * 0.2, width, height * 0.2])
+        pyrosim.Send_Joint(name="Torso_LeftLeg", parent="Torso", child="LeftLeg", type="revolute",
+                           position=[x-.5, y, z], jointAxis="0 1 0")
+        pyrosim.Send_Cube(name="LeftLeg", pos=[x-.5, y, z - 1], size=[length, width * 0.2, height * 0.2])
 
         # End robot generation
         pyrosim.End()
@@ -97,10 +100,12 @@ class SOLUTION:
         pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
         pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
         pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
+        pyrosim.Send_Sensor_Neuron(name=3, linkName="LeftLeg")
 
         # Create motor neurons to move the link's joints
-        pyrosim.Send_Motor_Neuron(name=3, jointName="Torso_BackLeg")
-        pyrosim.Send_Motor_Neuron(name=4, jointName="Torso_FrontLeg")
+        pyrosim.Send_Motor_Neuron(name=4, jointName="Torso_BackLeg")
+        pyrosim.Send_Motor_Neuron(name=5, jointName="Torso_FrontLeg")
+        pyrosim.Send_Motor_Neuron(name=6, jointName="Torso_LeftLeg")
 
         for currentRow in range(c.numSensorNeurons):
             for currentColumn in range(c.numMotorNeurons):
@@ -111,8 +116,8 @@ class SOLUTION:
 
     def Mutate(self):
         # Find random row and column
-        row = random.randint(0, c.numSensorNeurons - 1)
-        column = random.randint(0, c.numMotorNeurons - 1)
+        row = random.randint(0, c.numSensorNeurons)
+        column = random.randint(0, c.numMotorNeurons)
 
         # Calculate the amount the random element is changed by
         mutation_amount = random.random() * 2 - 1
