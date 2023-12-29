@@ -78,6 +78,9 @@ class SOLUTION:
         pyrosim.Send_Joint(name="Torso_LeftLeg", parent="Torso", child="LeftLeg", type="revolute",
                            position=[x-.5, y, z], jointAxis="0 1 0")
         pyrosim.Send_Cube(name="LeftLeg", pos=[x-.5, y, z - 1], size=[length, width * 0.2, height * 0.2])
+        pyrosim.Send_Joint(name="Torso_RightLeg", parent="Torso", child="RightLeg", type="revolute",
+                           position=[x + .5, y, z], jointAxis="0 1 0")
+        pyrosim.Send_Cube(name="RightLeg", pos=[x + .5, y, z - 1], size=[length, width * 0.2, height * 0.2])
 
         # End robot generation
         pyrosim.End()
