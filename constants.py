@@ -21,4 +21,4 @@ numSensorNeurons = 4
 numMotorNeurons = 8
 
 # Bias for synaptic weights
-motorJointRange = 1
+motorJointRange = .2
