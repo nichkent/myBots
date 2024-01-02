@@ -9,10 +9,10 @@ phaseOffset = numpy.pi/4
 numTimeSteps = 1000
 
 # Number of generations for a solution
-numberOfGenerations = 1
+numberOfGenerations = 10
 
 # Population Size
-populationSize = 1
+populationSize = 10
 
 # Number of sensor neurons
 numSensorNeurons = 2

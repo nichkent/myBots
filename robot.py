@@ -67,9 +67,22 @@ class ROBOT:
     def Get_Fitness(self, solutionID):
         basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
         linkPosition = basePositionAndOrientation[0]
+        # Orientation
+        orientation = basePositionAndOrientation[1]
+
+        # Forward movement
         xPosition = linkPosition[0]
 
+        # Vertical orientation
+        zPosition = linkPosition[2]
+
+        # Convert quaternion to roll, pitch, and yaw
+        roll, pitch, yaw = p.getEulerFromQuaternion(orientation)
+
+        # Define fitness as a combination of forward movement and balance
+        fitness = xPosition + max(0, 1 - abs(pitch))
+
         with open("tmp" + str(solutionID) + ".txt", "w") as f:
-            f.write(str(xPosition))
+            f.write(str(fitness))
         os.system("rename tmp" + str(solutionID) + ".txt " "fitness" + str(solutionID) + ".txt")
 

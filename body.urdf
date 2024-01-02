@@ -79,13 +79,6 @@
        <axis xyz="0 1 0"/>
        <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
     </joint>
-    <joint name="Left_Torso" type="revolute">
-       <parent link="LeftLeg"/>
-       <child  link="Torso"/>
-       <origin rpy="0 0 0" xyz="0 0.5 2.1" />
-       <axis xyz="0 1 0"/>
-       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
-    </joint>
     <joint name="LeftLeg_LeftLowerLeg" type="revolute">
        <parent link="LeftLeg"/>
        <child  link="LeftLowerLeg"/>
