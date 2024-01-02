@@ -18,7 +18,7 @@ populationSize = 10
 numSensorNeurons = 2
 
 # Number of motor neurons
-numMotorNeurons = 9
+numMotorNeurons = 5
 
 # Bias for synaptic weights
 motorJointRange = .2
